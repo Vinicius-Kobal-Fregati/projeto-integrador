@@ -83,7 +83,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/label_rua"
+            android:id="@+id/label_bairro"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -93,27 +93,27 @@
             app:layout_constraintTop_toBottomOf="@id/label_cidade">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_rua"
+                android:id="@+id/input_bairro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Rua" />
+                android:hint="Bairro" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/label_bairro"
+            android:id="@+id/label_rua"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:layout_marginTop="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_rua">
+            app:layout_constraintTop_toBottomOf="@id/label_bairro">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_bairro"
+                android:id="@+id/input_rua"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Bairro" />
+                android:hint="Rua" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -124,30 +124,13 @@
             android:layout_marginTop="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_bairro">
+            app:layout_constraintTop_toBottomOf="@id/label_rua">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_numero"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Número" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/label_complemento"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginTop="28dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/label_numero">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_complemento"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Complemento" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
@@ -158,7 +141,7 @@
             android:layout_marginBottom="10dp"
             android:text="Cadastrar"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/label_complemento"
+            app:layout_constraintTop_toBottomOf="@id/label_numero"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
