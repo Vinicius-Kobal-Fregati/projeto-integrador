@@ -14,4 +14,6 @@ class PrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
     }
+
+
 }
