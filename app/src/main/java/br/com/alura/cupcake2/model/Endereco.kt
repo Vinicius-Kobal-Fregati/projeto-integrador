@@ -10,6 +10,6 @@ class Endereco (
     val cidade: String,
     val bairro: String,
     val rua: String,
-    val numero: Int,
+    val numero: Int = 0,
     var pessoaId: Long? = 0L
 )
