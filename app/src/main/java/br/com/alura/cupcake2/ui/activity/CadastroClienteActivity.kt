@@ -12,6 +12,8 @@ import br.com.alura.cupcake2.extensions.toast
 import br.com.alura.cupcake2.model.Endereco
 import br.com.alura.cupcake2.model.Pessoa
 import br.com.alura.cupcake2.model.TipoConta
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.lastOrNull
 import kotlinx.coroutines.launch
 
 class CadastroClienteActivity : AppCompatActivity() {
@@ -39,7 +41,7 @@ class CadastroClienteActivity : AppCompatActivity() {
             val nomeTexto: String = binding.inputNome.text.toString()
             val emailTexto: String = binding.inputEmail.text.toString()
             val senhaTexto: String = binding.inputSenha.text.toString()
-            val pessoa: Pessoa = Pessoa(nomeCompleto = nomeTexto,
+            var pessoa: Pessoa = Pessoa(nomeCompleto = nomeTexto,
                 email = emailTexto,
                 senha = senhaTexto,
                 tipoConta = TipoConta.CLIENTE)
@@ -51,6 +53,11 @@ class CadastroClienteActivity : AppCompatActivity() {
                     Log.e("CadastroUsuario", "configuraBotaoCadastrar: ", e)
                     toast("Falha ao cadastrar usuário")
                 }
+            }
+
+            lifecycleScope.launch {
+                pessoaDao.buscarPorEmail(pessoa.email)
+                    .firstOrNull()?.let { pessoa = it }
             }
 
             val cidadeTexto: String = binding.inputCidade.text.toString()

@@ -9,6 +9,9 @@ interface CupcakeDao {
     @Query("SELECT * FROM Cupcake")
     fun buscaTodos(): Flow<List<Cupcake>>
 
+    @Query("SELECT * FROM Cupcake WHERE destacado = 1")
+    fun buscarDestacados(): Flow<List<Cupcake>>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun salva(cupcake: Cupcake)
 

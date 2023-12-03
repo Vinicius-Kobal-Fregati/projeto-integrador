@@ -27,4 +27,12 @@ interface PessoaDao {
         """
     )
     fun buscaPorId(pessoaId: String): Flow<Pessoa>
+
+    @Query(
+        """
+            SELECT * FROM Pessoa
+            WHERE email = :pessoaEmail
+        """
+    )
+    fun buscarPorEmail(pessoaEmail: String): Flow<Pessoa>
 }

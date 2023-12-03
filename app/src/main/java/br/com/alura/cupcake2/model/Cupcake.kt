@@ -9,9 +9,9 @@ class Cupcake (
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
     val sabor: String,
-    val ingredientes: String,
-    val alergenicos: String,
-    val precoOriginal: BigDecimal,
+    val ingredientes: String = "",
+    val alergenicos: String = "",
+    val precoOriginal: BigDecimal = 0.toBigDecimal(),
     val porcentagemDesconto: BigDecimal = 0.toBigDecimal(),
     val destacado: Boolean = false
 )
