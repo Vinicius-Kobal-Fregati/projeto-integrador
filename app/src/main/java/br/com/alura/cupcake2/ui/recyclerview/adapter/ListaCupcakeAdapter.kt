@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.com.alura.cupcake2.databinding.CupcakeItemBinding
 import br.com.alura.cupcake2.model.Cupcake
+import br.com.alura.orgs.extensions.formataParaMoedaBrasileira
 
 class ListaCupcakeAdapter (private val context: Context,
                            cupcakes: List<Cupcake> = emptyList(),
@@ -33,7 +34,7 @@ class ListaCupcakeAdapter (private val context: Context,
             val descricao = binding.produtoItemDescricao
             descricao.text = cupcake.listaIngredientes.toString()
             val valor = binding.produtoItemValor
-            val valorEmMoeda: String = cupcake.precoOriginal.toString()
+            val valorEmMoeda: String = cupcake.precoOriginal.formataParaMoedaBrasileira()
             valor.text = valorEmMoeda
         }
     }

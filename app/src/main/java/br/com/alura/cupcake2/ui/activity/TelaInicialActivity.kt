@@ -2,8 +2,8 @@ package br.com.alura.cupcake2.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import br.com.alura.cupcake2.R
 import br.com.alura.cupcake2.databinding.ActivityTelaInicialBinding
+import br.com.alura.cupcake2.extensions.vaiPara
 
 class TelaInicialActivity : AppCompatActivity() {
 
@@ -14,5 +14,12 @@ class TelaInicialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        carregarBotaoCadastra()
+    }
+
+    fun carregarBotaoCadastra() {
+        binding.botaoCadastro.setOnClickListener {
+            vaiPara(CadastroClienteActivity::class.java)
+        }
     }
 }
