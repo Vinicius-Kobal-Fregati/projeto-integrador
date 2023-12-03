@@ -15,6 +15,7 @@ class PrincipalActivity : AppCompatActivity() {
 
     private val adapter = ListaCupcakeAdapter(context = this)
     private val adapterDestacados = ListaCupcakeAdapter(context = this)
+    private val adapterComDesconto = ListaCupcakeAdapter(context = this)
     private val binding by lazy {
         ActivityPrincipalBinding.inflate(layoutInflater)
     }
@@ -29,8 +30,10 @@ class PrincipalActivity : AppCompatActivity() {
         adicionarProdutosCasoNãoTenha()
         buscarTodosOsProdutos()
         buscarProdutosDestacados()
+        buscarProdutosComDesconto()
         configuraRecyclerView()
         configuraRecyclerViewDestacados()
+        configuraRecyclerViewDescontos()
     }
 
     fun adicionarProdutosCasoNãoTenha() {
@@ -42,22 +45,29 @@ class PrincipalActivity : AppCompatActivity() {
                         Cupcake(sabor = "Morango",
                             destacado = true,
                             ingredientes = "Farinha, morango, gotas de chocolate",
-                            precoOriginal = 20.00.toBigDecimal(),
-                            porcentagemDesconto = 0.toBigDecimal(),
+                            precoOriginal = 8.00.toBigDecimal(),
+                            porcentagemDesconto = 10.toBigDecimal(),
                             alergenicos = "")
                     )
 
                     cupcakeDao.salva(Cupcake(sabor = "Nutella",
                         destacado = true,
                         ingredientes = "Farinha, nutella, gotas de chocolate",
-                        precoOriginal = 25.00.toBigDecimal(),
+                        precoOriginal = 10.00.toBigDecimal(),
+                        porcentagemDesconto = 5.toBigDecimal(),
+                        alergenicos = ""))
+
+                    cupcakeDao.salva(Cupcake(sabor = "Floresta negra",
+                        destacado = false,
+                        ingredientes = "Farinha, cereja, gotas de chocolate",
+                        precoOriginal = 7.00.toBigDecimal(),
                         porcentagemDesconto = 0.toBigDecimal(),
                         alergenicos = ""))
 
-                    cupcakeDao.salva(Cupcake(sabor = "Cereja",
+                    cupcakeDao.salva(Cupcake(sabor = "Chocolate ao letie",
                         destacado = false,
-                        ingredientes = "Farinha, cereja, gotas de chocolate",
-                        precoOriginal = 22.00.toBigDecimal(),
+                        ingredientes = "Farinha, chocolate ao leite, gotas de chocolate",
+                        precoOriginal = 7.00.toBigDecimal(),
                         porcentagemDesconto = 0.toBigDecimal(),
                         alergenicos = ""))
                 }
@@ -81,6 +91,14 @@ class PrincipalActivity : AppCompatActivity() {
         }
     }
 
+    fun buscarProdutosComDesconto() {
+        lifecycleScope.launch {
+            cupcakeDao.buscarComDescontos().collect { cupcakes ->
+                adapterComDesconto.atualiza(cupcakes)
+            }
+        }
+    }
+
     private fun configuraRecyclerView() {
         val recyclerView = binding.recyclerCupcake
         recyclerView.adapter = adapter
@@ -98,6 +116,20 @@ class PrincipalActivity : AppCompatActivity() {
     private fun configuraRecyclerViewDestacados() {
         val recyclerView = binding.recyclerDestacados
         recyclerView.adapter = adapterDestacados
+        adapter.quandoClicaNoItem = {
+            val intent = Intent(
+                this,
+                MaisDetalhesActivity::class.java
+            ).apply {
+                //putExtra(CHAVE_PRODUTO_ID, it.id)
+            }
+            startActivity(intent)
+        }
+    }
+
+    private fun configuraRecyclerViewDescontos() {
+        val recyclerView = binding.recyclerDescontos
+        recyclerView.adapter = adapterComDesconto
         adapter.quandoClicaNoItem = {
             val intent = Intent(
                 this,

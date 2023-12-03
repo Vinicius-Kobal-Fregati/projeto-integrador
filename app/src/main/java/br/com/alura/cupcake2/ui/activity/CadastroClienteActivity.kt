@@ -50,7 +50,7 @@ class CadastroClienteActivity : AppCompatActivity() {
 
             if (nomeTexto.isNullOrBlank() || emailTexto.isNullOrBlank() || senhaTexto.isNullOrBlank() ||
                 cidadeTexto.isNullOrBlank() || bairroTexto.isNullOrBlank() || ruaTexto.isNullOrBlank()
-                || numeroInt != null) {
+                || numeroInt == null) {
                 toast("Os dados do usuário não foram preenchidos corretamente!")
                 semErro = false
             }
