@@ -20,7 +20,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/cupcake_foto" />
+            app:srcCompat="@drawable/cupcake_foto" />
 
         <TextView
             android:id="@+id/activity_detalhes_produto_nome"
@@ -37,7 +37,7 @@
             tools:text="Nome produto" />
 
         <TextView
-            android:id="@+id/activity_detalhes_produto_descricao"
+            android:id="@+id/activity_detalhes_produto_ingredientes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -47,6 +47,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/activity_detalhes_produto_nome"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@tools:sample/lorem[10]" />
+
+        <TextView
+            android:id="@+id/activity_detalhes_produto_alergenicos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="top"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/activity_detalhes_produto_ingredientes"
             app:layout_constraintVertical_bias="0.0"
             tools:text="@tools:sample/lorem[10]" />
 

@@ -14,6 +14,17 @@
         tools:srcCompat="@tools:sample/avatars"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <TextView
+        android:id="@+id/activity_carrinho_custo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custo: "
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="20dp"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_height="400dp"
         android:layout_width="match_parent"
@@ -21,11 +32,12 @@
         app:layout_constraintTop_toBottomOf="@+id/carrinho_imageView_avatar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/activity_carrinho_finalizar"
         tools:listitem="@layout/carrinho_item"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/activity_carrinho_cancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cancelar"
@@ -34,7 +46,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/activity_carrinho_finalizar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

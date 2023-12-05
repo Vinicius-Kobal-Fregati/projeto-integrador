@@ -10,7 +10,7 @@ import br.com.alura.orgs.extensions.formataParaMoedaBrasileira
 
 class ListaCupcakeAdapter (private val context: Context,
                            cupcakes: List<Cupcake> = emptyList(),
-                           var quandoClicaNoItem: (cupcake: Cupcake) -> Unit = {}
+                           var quandoClicaNoItem: (cupcake: Cupcake) -> Unit = {},
 ) : RecyclerView.Adapter<ListaCupcakeAdapter.ViewHolder>() {
     private val cupcakes = cupcakes.toMutableList()
 

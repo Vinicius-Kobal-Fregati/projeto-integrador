@@ -1,11 +1,13 @@
 package br.com.alura.cupcake2.ui.activity
 
+import CHAVE_CUPCAKE
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import br.com.alura.cupcake2.database.AppDatabase
 import br.com.alura.cupcake2.databinding.ActivityPrincipalBinding
+import br.com.alura.cupcake2.extensions.vaiPara
 import br.com.alura.cupcake2.model.Cupcake
 import br.com.alura.cupcake2.ui.recyclerview.adapter.ListaCupcakeAdapter
 import kotlinx.coroutines.flow.firstOrNull
@@ -28,12 +30,20 @@ class PrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         adicionarProdutosCasoNãoTenha()
+        // buscar e configurar todos
         buscarTodosOsProdutos()
         buscarProdutosDestacados()
         buscarProdutosComDesconto()
         configuraRecyclerView()
         configuraRecyclerViewDestacados()
         configuraRecyclerViewDescontos()
+        configuraBotaoCarrinho()
+    }
+
+    fun configuraBotaoCarrinho() {
+        binding.imageViewCarrinho.setOnClickListener{
+            vaiPara(CarrinhoActivity::class.java)
+        }
     }
 
     fun adicionarProdutosCasoNãoTenha() {
@@ -64,7 +74,7 @@ class PrincipalActivity : AppCompatActivity() {
                         porcentagemDesconto = 0.toBigDecimal(),
                         alergenicos = ""))
 
-                    cupcakeDao.salva(Cupcake(sabor = "Chocolate ao letie",
+                    cupcakeDao.salva(Cupcake(sabor = "Chocolate ao leite",
                         destacado = false,
                         ingredientes = "Farinha, chocolate ao leite, gotas de chocolate",
                         precoOriginal = 7.00.toBigDecimal(),
@@ -107,7 +117,7 @@ class PrincipalActivity : AppCompatActivity() {
                 this,
                 MaisDetalhesActivity::class.java
             ).apply {
-                //putExtra(CHAVE_PRODUTO_ID, it.id)
+                putExtra(CHAVE_CUPCAKE, it)
             }
             startActivity(intent)
         }
@@ -116,12 +126,12 @@ class PrincipalActivity : AppCompatActivity() {
     private fun configuraRecyclerViewDestacados() {
         val recyclerView = binding.recyclerDestacados
         recyclerView.adapter = adapterDestacados
-        adapter.quandoClicaNoItem = {
+        adapterDestacados.quandoClicaNoItem = {
             val intent = Intent(
                 this,
                 MaisDetalhesActivity::class.java
             ).apply {
-                //putExtra(CHAVE_PRODUTO_ID, it.id)
+                putExtra(CHAVE_CUPCAKE, it)
             }
             startActivity(intent)
         }
@@ -130,12 +140,12 @@ class PrincipalActivity : AppCompatActivity() {
     private fun configuraRecyclerViewDescontos() {
         val recyclerView = binding.recyclerDescontos
         recyclerView.adapter = adapterComDesconto
-        adapter.quandoClicaNoItem = {
+        adapterComDesconto.quandoClicaNoItem = {
             val intent = Intent(
                 this,
                 MaisDetalhesActivity::class.java
             ).apply {
-                //putExtra(CHAVE_PRODUTO_ID, it.id)
+                putExtra(CHAVE_CUPCAKE, it)
             }
             startActivity(intent)
         }
