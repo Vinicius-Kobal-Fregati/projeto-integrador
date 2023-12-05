@@ -10,6 +10,7 @@ import br.com.alura.cupcake2.databinding.ActivityPrincipalBinding
 import br.com.alura.cupcake2.extensions.toast
 import br.com.alura.cupcake2.extensions.vaiPara
 import br.com.alura.cupcake2.ui.recyclerview.adapter.ListaCupcakeAdapter
+import br.com.alura.orgs.extensions.formataParaMoedaBrasileira
 import java.math.BigDecimal
 
 class CarrinhoActivity : AppCompatActivity() {
@@ -51,7 +52,7 @@ class CarrinhoActivity : AppCompatActivity() {
     }
 
     fun configuraSaldo(){
-        binding.activityCarrinhoCusto.setText("Valor: R$${precoTotal}")
+        binding.activityCarrinhoCusto.setText("Custo: ${precoTotal.formataParaMoedaBrasileira()}")
     }
 
     fun configuraBotaoCancelar() {

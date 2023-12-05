@@ -32,9 +32,9 @@ class ListaCupcakeAdapter (private val context: Context,
             val nome = binding.produtoItemNome
             nome.text = cupcake.sabor
             val descricao = binding.produtoItemDescricao
-            descricao.text = cupcake.ingredientes.toString()
+            descricao.text = cupcake.ingredientes
             val valor = binding.produtoItemValor
-            val valorEmMoeda: String = cupcake.precoOriginal.formataParaMoedaBrasileira()
+            val valorEmMoeda: String = cupcake.valorComDesconto().formataParaMoedaBrasileira()
             valor.text = valorEmMoeda
         }
     }

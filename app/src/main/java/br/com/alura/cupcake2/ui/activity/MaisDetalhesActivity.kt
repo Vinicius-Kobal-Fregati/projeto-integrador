@@ -32,8 +32,7 @@ class MaisDetalhesActivity : AppCompatActivity() {
             if (cupcake != null) {
                 cupcakeGeral = cupcake
                 binding.activityDetalhesProdutoNome.setText(cupcake.sabor)
-                val custo: BigDecimal =
-                    cupcake.precoOriginal - cupcake.precoOriginal * (cupcake.porcentagemDesconto/100.toBigDecimal())
+                val custo: BigDecimal = cupcake.valorComDesconto()
                 binding.activityDetalhesProdutoValor.setText(custo.formataParaMoedaBrasileira())
                 binding.activityDetalhesProdutoIngredientes.setText(cupcake.ingredientes)
                 binding.activityDetalhesProdutoAlergenicos.setText(cupcake.alergenicos)
