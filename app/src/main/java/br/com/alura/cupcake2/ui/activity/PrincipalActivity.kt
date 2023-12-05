@@ -1,23 +1,29 @@
 package br.com.alura.cupcake2.ui.activity
 
 import CHAVE_CUPCAKE
+import CHAVE_PESSOA
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import br.com.alura.cupcake2.database.AppDatabase
 import br.com.alura.cupcake2.databinding.ActivityPrincipalBinding
+import br.com.alura.cupcake2.extensions.toast
 import br.com.alura.cupcake2.extensions.vaiPara
+import br.com.alura.cupcake2.extensions.vaiParaComPessoa
 import br.com.alura.cupcake2.model.Cupcake
+import br.com.alura.cupcake2.model.Pessoa
 import br.com.alura.cupcake2.ui.recyclerview.adapter.ListaCupcakeAdapter
+import br.com.alura.orgs.extensions.formataParaMoedaBrasileira
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
+import java.math.BigDecimal
 
 class PrincipalActivity : AppCompatActivity() {
-
     private val adapter = ListaCupcakeAdapter(context = this)
     private val adapterDestacados = ListaCupcakeAdapter(context = this)
     private val adapterComDesconto = ListaCupcakeAdapter(context = this)
+    private lateinit var pessoaGeral: Pessoa
     private val binding by lazy {
         ActivityPrincipalBinding.inflate(layoutInflater)
     }
@@ -30,10 +36,18 @@ class PrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         adicionarProdutosCasoNãoTenha()
-        // buscar e configurar todos
+        carregaPessoaRecebida()
+        buscarProdutos()
+        configuraRecyclerViewEBotao()
+    }
+
+    fun buscarProdutos() {
         buscarTodosOsProdutos()
         buscarProdutosDestacados()
         buscarProdutosComDesconto()
+    }
+
+    fun configuraRecyclerViewEBotao() {
         configuraRecyclerView()
         configuraRecyclerViewDestacados()
         configuraRecyclerViewDescontos()
@@ -42,7 +56,8 @@ class PrincipalActivity : AppCompatActivity() {
 
     fun configuraBotaoCarrinho() {
         binding.imageViewCarrinho.setOnClickListener{
-            vaiPara(CarrinhoActivity::class.java)
+            //vaiPara(CarrinhoActivity::class.java)
+            vaiParaComPessoa(CarrinhoActivity::class.java, pessoaGeral)
         }
     }
 
@@ -148,6 +163,18 @@ class PrincipalActivity : AppCompatActivity() {
                 putExtra(CHAVE_CUPCAKE, it)
             }
             startActivity(intent)
+        }
+    }
+
+    fun carregaPessoaRecebida() {
+        val dadosRecebidos = intent
+        if (dadosRecebidos.hasExtra(CHAVE_PESSOA)) {
+            val pessoa = dadosRecebidos.getParcelableExtra(CHAVE_PESSOA) as Pessoa?
+            if (pessoa != null) {
+                pessoaGeral = pessoa
+            }
+        } else {
+            finish()
         }
     }
 }

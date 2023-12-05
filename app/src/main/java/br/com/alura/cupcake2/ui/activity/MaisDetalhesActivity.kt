@@ -20,12 +20,12 @@ class MaisDetalhesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        carregaLeilaoRecebido()
+        carregaCupcakeRecebido()
         configuraBotaoAdiciona()
         configuraBotaoRemove()
     }
 
-    fun carregaLeilaoRecebido() {
+    fun carregaCupcakeRecebido() {
         val dadosRecebidos = intent
         if (dadosRecebidos.hasExtra(CHAVE_CUPCAKE)) {
             val cupcake = dadosRecebidos.getParcelableExtra(CHAVE_CUPCAKE) as Cupcake?

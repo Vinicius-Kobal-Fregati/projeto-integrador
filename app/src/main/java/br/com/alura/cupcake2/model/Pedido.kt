@@ -9,7 +9,7 @@ class Pedido (
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
     val entregarEmCasa: Boolean,
-    val custoDeEntrega: BigDecimal,
-    val porcentagemDesconto: BigDecimal,
+    val precoOriginal: BigDecimal = 0.00.toBigDecimal(),
+    val precoComDesconto: BigDecimal = 0.00.toBigDecimal(),
     val pessoaId: Long = 0L
 )

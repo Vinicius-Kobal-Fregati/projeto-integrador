@@ -10,6 +10,7 @@ import br.com.alura.cupcake2.database.AppDatabase
 import br.com.alura.cupcake2.databinding.ActivityCadastroClienteBinding
 import br.com.alura.cupcake2.extensions.toast
 import br.com.alura.cupcake2.extensions.vaiPara
+import br.com.alura.cupcake2.extensions.vaiParaComPessoa
 import br.com.alura.cupcake2.model.Endereco
 import br.com.alura.cupcake2.model.Pessoa
 import br.com.alura.cupcake2.model.TipoConta
@@ -95,7 +96,7 @@ class CadastroClienteActivity : AppCompatActivity() {
             }
 
             if (semErro) {
-                vaiPara(PrincipalActivity::class.java)
+                vaiParaComPessoa(PrincipalActivity::class.java, pessoa)
             }
         }
     }
