@@ -2,6 +2,7 @@ package br.com.alura.cupcake2.dao
 
 import androidx.room.*
 import br.com.alura.cupcake2.model.Pessoa
+import br.com.alura.cupcake2.model.TipoConta
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -35,4 +36,12 @@ interface PessoaDao {
         """
     )
     fun buscarPorEmail(pessoaEmail: String): Flow<Pessoa>
+
+    @Query(
+        """
+            SELECT * FROM Pessoa
+            WHERE tipoConta = 'FUNCIONARIO'
+        """
+    )
+    fun buscarFuncionario(): Flow<List<Pessoa>>
 }

@@ -11,6 +11,8 @@ import br.com.alura.cupcake2.databinding.ActivityTelaInicialBinding
 import br.com.alura.cupcake2.extensions.toast
 import br.com.alura.cupcake2.extensions.vaiPara
 import br.com.alura.cupcake2.model.Pessoa
+import br.com.alura.cupcake2.model.TipoConta
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -29,8 +31,21 @@ class TelaInicialActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        criaFuncionarioCasoNaoTenha()
         carregarBotaoCadastra()
         carregarBotaoLogin()
+    }
+
+    fun criaFuncionarioCasoNaoTenha() {
+        runBlocking {
+            if (pessoaDao.buscarFuncionario().firstOrNull().isNullOrEmpty()) {
+                val pessoaFuncionario:Pessoa = Pessoa(tipoConta = TipoConta.FUNCIONARIO,
+                    nomeCompleto = "Funcionário Teste", email = "funcionario@gmail.com",
+                    senha = "senha123")
+
+                pessoaDao.salva(pessoaFuncionario)
+            }
+        }
     }
 
     fun carregarBotaoCadastra() {
